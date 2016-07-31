@@ -1,3 +1,25 @@
-<h1>
-  {{title}}
-</h1>
+<div class="bg-light-gray">
+  <nav class="navbar navbar-default main-nav" role="navigation">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+      <span class="hero-title">
+        <span class="meet"> Meet</span>
+      <span class="planner">Planner</span>
+      </span>
+
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a routerLink="/login" routerLinkActive="active">Log in</a></li>
+    </ul>
+
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>
