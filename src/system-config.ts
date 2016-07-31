@@ -9,10 +9,18 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
+  'moment': 'vendor/moment/moment.js',
+  'ng2-bootstrap': 'vendor/ng2-bootstrap'
 };
 
 /** User packages configuration. */
 const packages: any = {
+  'ng2-bootstrap': {
+    defaultExtension: 'js'
+  },
+  'moment': {
+    format: 'cjs'
+  }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
