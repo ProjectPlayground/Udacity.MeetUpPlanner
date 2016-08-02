@@ -1,0 +1,58 @@
+<div class="signup-page">
+  <div class="signup-container">
+
+    <div class="signup-header">
+      <h1>Sign Up</h1>
+    </div>
+
+    <div class="signup-body">
+      <accordion [closeOthers]="false">
+        <form>
+
+          <accordion-group heading="The Important stuff" [isOpen]="true">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="name" class="form-control" id="name" placeholder="Enter name" autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter email" autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Password:</label>
+              <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+            </div>
+            <div class="form-group">
+              <label for="re-pwd">Repeat Password:</label>
+              <input type="password" class="form-control" id="re-pwd" placeholder="Enter password again">
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="Extra Details (You can enter this in later)" [isOpen]="false">
+            <div class="form-group">
+              <label for="jobtitle">Job title:</label>
+              <input type="jobtitle" class="form-control" id="jobtitle" placeholder="Enter job title">
+            </div>
+            <div class="form-group">
+              <label for="employer">Employer:</label>
+              <input type="employer" class="form-control" id="employer" placeholder="Enter employer">
+            </div>
+            <div class="form-group">
+              <label for="dob">Date of Birth:</label>
+              <input type="date" class="form-control" id="dob" placeholder="Enter date of birth">
+            </div>
+          </accordion-group>
+
+
+          <div class="form-group">
+            <button class="btn signup-btn">Sign me up!</button>
+          </div>
+        </form>
+      </accordion>
+    </div>
+
+    <div class="signup-footer">
+      Have an account? <a routerLink="/login" routerLinkActive="active">Log in</a>
+    </div>
+  </div>
+</div>
