@@ -3,6 +3,7 @@ import { FORM_DIRECTIVES } from '@angular/forms';
 import { CORE_DIRECTIVES } from '@angular/common';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import { ACCORDION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+import { AngularFire } from 'angularfire2';
 
 
 @Component({
@@ -20,7 +21,7 @@ import { ACCORDION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  constructor(public af: AngularFire) { }
 
   ngOnInit() {
   }

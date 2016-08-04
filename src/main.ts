@@ -1,5 +1,6 @@
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
+import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import { AppComponent, environment, appRouterProviders  } from './app/';
 import { FIREBASE_PROVIDERS, defaultFirebase, firebaseAuthConfig, AuthProviders, AuthMethods } from 'angularfire2';
 
@@ -9,6 +10,8 @@ if (environment.production) {
 
 bootstrap(AppComponent,
 [
+  disableDeprecatedForms(),
+  provideForms(),
   FIREBASE_PROVIDERS,
   defaultFirebase({
     apiKey: 'AIzaSyAIu7P5w9Jg1sF33CsS0px39mhe9nGsFWU',
@@ -19,7 +22,7 @@ bootstrap(AppComponent,
   appRouterProviders,
   firebaseAuthConfig({
     provider: AuthProviders.Password,
-    method: AuthMethods.Redirect
+    method: AuthMethods.Password
   })
 ])
 .catch(err => console.error(err));
