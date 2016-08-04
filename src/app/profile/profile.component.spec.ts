@@ -3,11 +3,11 @@
 // import { By }           from '@angular/platform-browser';
 // import { DebugElement } from '@angular/core';
 // import { addProviders, async, inject } from '@angular/core/testing';
-// import { SignupComponent } from './signup.component';
+// import { ProfileComponent } from './profile.component';
 
-// describe('Component: Signup', () => {
+// describe('Component: Profile', () => {
 //   it('should create an instance', () => {
-//     let component = new SignupComponent();
+//     let component = new ProfileComponent();
 //     expect(component).toBeTruthy();
 //   });
 // });

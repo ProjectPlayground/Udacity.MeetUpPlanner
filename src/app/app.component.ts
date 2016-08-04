@@ -12,7 +12,7 @@ import { AngularFire } from 'angularfire2';
 export class AppComponent implements OnInit {
 
   private loggedIn: boolean;
-  private user: any;
+  private user = null;
 
   constructor(public af: AngularFire, public router: Router) {
 
@@ -23,15 +23,13 @@ export class AppComponent implements OnInit {
       if (authState != null) {
         this.loggedIn = true;
         this.user = authState.auth;
-        console.log(this.user);
       }
     });
   }
 
   LogOut() {
-    console.log('logout successful');
     this.af.auth.logout();
-
+    this.loggedIn = false;
     this.router.navigate(['login']);
   }
 }

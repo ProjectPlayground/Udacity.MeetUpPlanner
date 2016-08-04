@@ -5,41 +5,45 @@
       <h1>Sign Up</h1>
     </div>
 
+    {{formData.value | json}}
+
+    {{signUpModel | json}}
+
     <div class="signup-body">
       <accordion [closeOthers]="false">
-        <form>
+        <form [formGroup]="formData" (submit)="createAccount($event)">
 
           <accordion-group heading="The Important stuff" [isOpen]="true">
             <div class="form-group">
               <label for="name">Name:</label>
-              <input type="name" class="form-control" id="name" placeholder="Enter name" autocomplete="given-name">
+              <input type="name" formControlName="name" class="form-control" id="name" placeholder="Enter name" autocomplete="given-name">
             </div>
             <div class="form-group">
               <label for="email">Email:</label>
-              <input type="email" class="form-control" id="email" placeholder="Enter email" autocomplete="email">
+              <input type="email" formControlName="email" class="form-control" id="email" placeholder="Enter email" autocomplete="email">
             </div>
             <div class="form-group">
               <label for="pwd">Password:</label>
-              <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+              <input type="password" formControlName="pass" class="form-control" id="pwd" placeholder="Enter password">
             </div>
             <div class="form-group">
               <label for="re-pwd">Repeat Password:</label>
-              <input type="password" class="form-control" id="re-pwd" placeholder="Enter password again">
+              <input type="password" formControlName="passConfirm" class="form-control" id="re-pwd" placeholder="Enter password again">
             </div>
           </accordion-group>
 
-          <accordion-group heading="Extra Details (You can enter this in later)" [isOpen]="false">
+          <accordion-group heading="Extra Details (You can enter this in later)" [isOpen]="true">
             <div class="form-group">
               <label for="jobtitle">Job title:</label>
-              <input type="jobtitle" class="form-control" id="jobtitle" placeholder="Enter job title">
+              <input type="jobtitle" formControlName="jobTitle" class="form-control" id="jobtitle" placeholder="Enter job title">
             </div>
             <div class="form-group">
               <label for="employer">Employer:</label>
-              <input type="employer" class="form-control" id="employer" placeholder="Enter employer">
+              <input type="employer" formControlName="employer" class="form-control" id="employer" placeholder="Enter employer">
             </div>
             <div class="form-group">
               <label for="dob">Date of Birth:</label>
-              <input type="date" class="form-control" id="dob" placeholder="Enter date of birth">
+              <input type="date" formControlName="dob" class="form-control" id="dob" placeholder="Enter date of birth">
             </div>
           </accordion-group>
 

@@ -21,7 +21,7 @@
     </ul>
 
     <ul class="nav navbar-nav navbar-right" *ngIf="loggedIn">
-      <li><a routerLink="/login" routerLinkActive="active">{{user.email}}</a></li>
+      <li><a routerLink="/profile/:{{user?.uid}}">{{user.email}}</a></li>
       <li><a routerLink="/login" routerLinkActive="active" (click)="LogOut()">Log Out</a></li>
     </ul>
 
