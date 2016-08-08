@@ -24,7 +24,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   checkAuthState(authState) {
-    console.log(authState);
     if (this.uid !== null) {
       if (authState !== null && authState.auth.uid !== this.uid) {
         // TODO: Create unauthorised/forbidden pages;

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { CORE_DIRECTIVES } from '@angular/common';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CORE_DIRECTIVES, NgClass } from '@angular/common';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { ACCORDION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 import { AngularFire } from 'angularfire2';
-
+import { FORM_EXTENSION_DIRECTIVES, CustomValidatorsService } from './../shared/form-extensions';
 
 @Component({
   moduleId: module.id,
@@ -16,39 +16,61 @@ import { AngularFire } from 'angularfire2';
     REACTIVE_FORM_DIRECTIVES,
     ROUTER_DIRECTIVES,
     ACCORDION_DIRECTIVES,
+    NgClass,
+    FORM_EXTENSION_DIRECTIVES
   ],
+  providers: [CustomValidatorsService],
   styleUrls: ['signup.component.css']
 })
 export class SignupComponent implements OnInit {
 
   private formData: FormGroup;
+  private showPassHelp: boolean = false;
 
-  constructor(public af: AngularFire, private fb: FormBuilder) { }
+  constructor(
+    private af: AngularFire,
+    private fb: FormBuilder,
+    private router: Router,
+    private validators: CustomValidatorsService) { }
 
   ngOnInit() {
     this.buildSignUpForm();
+
+    let passwordInput = document.getElementById('pwd');
+    passwordInput.onfocus = (() => this.showPassHelp = true);
+    passwordInput.onblur = (() => this.showPassHelp = false);
   }
 
   buildSignUpForm() {
     this.formData = this.fb.group({
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
-      pass: new FormControl('', Validators.required),
-      passConfirm: new FormControl('', Validators.required),
-      jobTitle: new FormControl(''),
-      employer: new FormControl(''),
-      dob: new FormControl('')
-    });
+      name: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, this.validators.validateEmail])],
+      jobTitle: [''],
+      employer: [''],
+      dob: [''],
+      pass: ['', Validators.compose(
+        [Validators.required,
+          Validators.minLength(8),
+          this.validators.containsLowerCase,
+          this.validators.containsUpperCase,
+          this.validators.containsSpecial])],
+      passConfirm: ['', Validators.required]
+    }, { validator: Validators.compose([this.validators.validatePasswordsMatch, this.validators.passwordIsValid]) });
   }
 
-  createAccount(event) {
+  createAccount() {
     if (this.formData.dirty && this.formData.valid) {
-      this.af.auth.createUser({ email: this.formData.controls['email'].value, password: this.formData.controls['pass'].value })
-        .then(u => this.af.database.list('/users')
-            .push(this.createUserData(u)));
-    } else {
-      console.log('not valid');
+      this.createUser();
     }
+  }
+
+  createUser() {
+    this.af.auth.createUser({ email: this.formData.controls['email'].value, password: this.formData.controls['pass'].value })
+      .then(u => {
+        this.af.database.object(`/users/`).update(this.createUserData(u));
+        this.router.navigate(['/Profile', u.uid]);
+      })
+      .catch(err => console.error(err));
   }
 
   createUserData(user) {
@@ -57,12 +79,9 @@ export class SignupComponent implements OnInit {
     newProfileObj[user.uid] = {
       displayName: this.formData.controls['name'].value,
       dob: this.formData.controls['dob'].value,
-      email: this.formData.controls['email'].value,
       employer: this.formData.controls['employer'].value,
       jobTitle: this.formData.controls['jobTitle'].value
-    }
-
-    console.log(newProfileObj);
+    };
 
     return newProfileObj;
   }
