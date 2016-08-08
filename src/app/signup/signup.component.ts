@@ -4,7 +4,9 @@ import { CORE_DIRECTIVES, NgClass } from '@angular/common';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { ACCORDION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 import { AngularFire } from 'angularfire2';
+import { UserDetail } from './../shared';
 import { FORM_EXTENSION_DIRECTIVES, CustomValidatorsService } from './../shared/form-extensions';
+
 
 @Component({
   moduleId: module.id,
@@ -65,6 +67,7 @@ export class SignupComponent implements OnInit {
   }
 
   createUser() {
+    console.log(this.formData.controls['email'].value, this.formData.controls['pass'].value);
     this.af.auth.createUser({ email: this.formData.controls['email'].value, password: this.formData.controls['pass'].value })
       .then(u => {
         this.af.database.object(`/users/`).update(this.createUserData(u));
