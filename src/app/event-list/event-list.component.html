@@ -1,4 +1,7 @@
-<p>
-  event-list works!
-</p>
-{{events | json}}
+<div class="event-list">
+  <div *ngFor="let event of events" class="event-list-item">
+    <div class="event-list-content">
+      {{event.event_name | json}}
+    </div>
+  </div>
+</div>
