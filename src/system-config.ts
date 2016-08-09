@@ -12,7 +12,10 @@ const map: any = {
   'moment': 'vendor/moment/moment.js',
   'ng2-bootstrap': 'vendor/ng2-bootstrap',
   'firebase': 'vendor/firebase/firebase.js',
-  'angularfire2': 'vendor/angularfire2'
+  'angularfire2': 'vendor/angularfire2',
+  'jquery': 'vendor/jquery/dist/jquery.js',
+  'bootstrap': 'vendor/bootstrap/dist/js/bootstrap.js',
+  'ng2-pagination': 'vendor/ng2-pagination'
 };
 
 /** User packages configuration. */
