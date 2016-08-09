@@ -53,9 +53,12 @@ export class CustomValidatorsService {
   }
 
   validateEmail(control: FormControl) {
-    let regex = new RegExp('(?=.*?[@])');
-
-    return regex.test(control.value) ? null : { 'validateEmail': true }
+    if (control.value
+      .match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {
+      return null;
+    } else {
+      return { 'valdiateEmail': true };
+    }
   }
 
   buildErrorMessages(control: FormControl, formGroup: FormGroup) {
