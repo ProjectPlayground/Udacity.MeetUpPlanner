@@ -8,4 +8,4 @@ import { PasswordValidatorComponent } from './password-validator.component';
 export const FORM_EXTENSION_DIRECTIVES = [
     ValidatedInputComponent,
     PasswordValidatorComponent
-]
+];

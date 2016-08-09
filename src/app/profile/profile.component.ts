@@ -3,7 +3,7 @@ import { REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup } from '@angular/forms
 import { CORE_DIRECTIVES } from '@angular/common';
 import { ActivatedRoute }  from '@angular/router';
 import { AngularFire } from 'angularfire2';
-import { UserDetail } from './../shared';
+import { UserModel } from './../shared';
 
 @Component({
   moduleId: module.id,
@@ -15,7 +15,7 @@ import { UserDetail } from './../shared';
 export class ProfileComponent implements OnInit, OnDestroy {
 
   private uid = null;
-  private user: UserDetail = new UserDetail();
+  private user: UserModel = new UserModel();
   private routeParams: any;
   private formData: FormGroup;
 
