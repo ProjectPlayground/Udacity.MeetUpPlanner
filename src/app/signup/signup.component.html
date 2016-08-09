@@ -37,7 +37,7 @@
           <accordion-group heading="Extra Details (You can enter this in later)" [isOpen]="true">
             <div class="form-group">
               <label for="jobtitle">Job title</label>
-              <input type="jobtitle" formControlName="jobTitle" class="form-control" id="jobtitle" placeholder="Enter job title">
+              <input type="text" formControlName="jobTitle" class="form-control" id="jobtitle" placeholder="Enter job title">
             </div>
             <div class="form-group">
               <label for="employer">Employer</label>
@@ -62,3 +62,6 @@
     </div>
   </div>
 </div>
+
+
+{{formData.value | json}}
