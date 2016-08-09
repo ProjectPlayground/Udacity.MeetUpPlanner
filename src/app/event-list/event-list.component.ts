@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFire } from 'angularfire2';
+import { EventModel } from './../shared';
 
 @Component({
   moduleId: module.id,
@@ -8,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventListComponent implements OnInit {
 
-  constructor() { }
+  private events: EventModel[] = [];
+
+  constructor(private af: AngularFire) { }
 
   ngOnInit() {
+    this.af.database.list('\events')
+    .subscribe(e => this.events = e);
   }
 
 }
