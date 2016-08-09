@@ -12,8 +12,11 @@
         <span class="meet"> Meet</span>
       <span class="planner">Planner</span>
       </span>
-
     </div>
+
+    <ul class="nav navbar-nav navbar-left">
+      <li><a routerLink="/events" routerLinkActive="active">Explore</a></li>
+    </ul>
 
     <ul class="nav navbar-nav navbar-right" *ngIf="!loggedIn">
       <li><a routerLink="/login" routerLinkActive="active">Log in</a></li>
