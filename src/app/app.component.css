@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'CHUNKFIVE';
+  src: url('./assets/Chunkfive.otf'); /* IE9 Compat Modes */
+  src: url('./assets/Chunkfive.otf') format('embedded-opentype'), /* IE6-IE8 */
+       url('./assets/Chunkfive.otf') format('otf'), /* Super Modern Browsers */
+       url('./assets/Chunkfive.otf') format('otf'), /* Pretty Modern Browsers */
+       url('./assets/Chunkfive.otf')  format('otf'), /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  src: url('./assets/Metropolis-Regular.otf'); /* IE9 Compat Modes */
+  src: url('./assets/Metropolis-Regular.otf') format('embedded-opentype'), /* IE6-IE8 */
+       url('./assets/Metropolis-Regular.otf') format('otf'), /* Super Modern Browsers */
+       url('./assets/Metropolis-Regular.otf') format('otf'), /* Pretty Modern Browsers */
+       url('./assets/Metropolis-Regular.otf')  format('otf'), /* Safari, Android, iOS */
+}
+
+body {
+    font-family: 'Metropolis';
+}
+
+.bg-light-gray{
+    background-color: #F7F5F2;
+    min-height: 1200px;
+}
+
+.hero-title {
+    font-family: 'CHUNKFIVE';
+    font-size: 45px;
+     position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin:0 auto;
+}
+
+.meet {
+    color: #005b96;
+}
+
+.planner {
+    color: #fff;
+    margin-left: -4px;
+}
+
+.main-nav {
+    background-color: #b3cde0;
+}

@@ -6,7 +6,7 @@
 
 var Angular2App = require('angular-cli/lib/broccoli/angular2-app');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   return new Angular2App(defaults, {
     vendorNpmFiles: [
       'systemjs/dist/system-polyfills.js',
@@ -15,7 +15,17 @@ module.exports = function(defaults) {
       'es6-shim/es6-shim.js',
       'reflect-metadata/**/*.+(ts|js|js.map)',
       'rxjs/**/*.+(js|js.map)',
-      '@angular/**/*.+(js|js.map)'
+      '@angular/**/*.+(js|js.map)',
+      'ng2-bootstrap/**/*.+(js|js.map)',
+      'moment/**/*.+(js|js.map)',
+      'angularfire2/**/*.js',
+      'firebase/*.js',
+      'font-awesome/css/font-awesome.min.css',
+      'font-awesome/fonts/fontawesome-webfont.woff',
+      'font-awesome/fonts/fontawesome-webfont.woff2',
+      'bootstrap/dist/css/bootstrap.css',
+      'bootstrap/dist/js/bootstrap.js',
+      'jquery/dist/jquery.js',
     ]
   });
 };

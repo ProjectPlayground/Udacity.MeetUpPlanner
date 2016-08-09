@@ -1,0 +1,30 @@
+<div class="login-page">
+    <div class="login-container">
+
+        <div class="login-header">
+            <h1>Log In</h1>
+        </div>
+
+        <div class="login-body">
+            <form>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" autocomplete="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" [(ngModel)]="pass" [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <div class="form-group">
+                    <button class="btn login-btn" (click)="login()">Log me in!</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="login-footer">
+            New to MeetPlanner? <a routerLink="/signup" routerLinkActive="active">Sign Up</a>
+        </div>
+
+    </div>
+</div>

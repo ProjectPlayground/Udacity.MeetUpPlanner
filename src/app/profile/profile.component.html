@@ -1,0 +1,33 @@
+<div class="content-page">
+    <div class="content">
+        <div class="container">
+            <div class="header-section">
+                {{user.displayName}}
+            </div>
+            <div class="body-section">
+                <form [formGroup]="formData" (submit)="updateUserDetails()">
+                    <div class="form-group">
+                        <label for="name" class="control-label">Name</label>
+                        <input type="text" [formControl]="formData.controls['name']" class="form-control" id="name" placeholder="Enter name" autocomplete="given-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="jobtitle">Job title</label>
+                        <input type="text" [formControl]="formData.controls['jobTitle']" class="form-control" id="jobtitle" placeholder="Enter job title">
+                    </div>
+                    <div class="form-group">
+                        <label for="employer">Employer</label>
+                        <input type="text" [formControl]="formData.controls['employer']" class="form-control" id="employer" placeholder="Enter employer">
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" [formControl]="formData.controls['dob']" class="form-control" id="dob" placeholder="Enter date of birth">
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn signup-btn">Update Details</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

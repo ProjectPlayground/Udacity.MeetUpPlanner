@@ -10,7 +10,12 @@
 /** Map relative paths to URLs. */
 const map: any = {
   'moment': 'vendor/moment/moment.js',
-  'ng2-bootstrap': 'vendor/ng2-bootstrap'
+  'ng2-bootstrap': 'vendor/ng2-bootstrap',
+  'firebase': 'vendor/firebase/firebase.js',
+  'angularfire2': 'vendor/angularfire2',
+  'jquery': 'vendor/jquery/dist/jquery.js',
+  'bootstrap': 'vendor/bootstrap/dist/js/bootstrap.js',
+  'ng2-pagination': 'vendor/ng2-pagination'
 };
 
 /** User packages configuration. */
@@ -20,6 +25,10 @@ const packages: any = {
   },
   'moment': {
     format: 'cjs'
+  },
+  angularfire2: {
+    defaultExtension: 'js',
+    main: 'angularfire2.js'
   }
 };
 
@@ -44,6 +53,11 @@ const barrels: string[] = [
   // App specific barrels.
   'app',
   'app/shared',
+  'app/shared/form-extensions',
+  'app/shared/UserDetails',
+  'app/login',
+  'app/signup',
+  'app/profile'
   /** @cli-barrel */
 ];
 
