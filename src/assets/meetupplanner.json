@@ -1,0 +1,56 @@
+{
+  "users" : {
+    "4cYJbQV1u7fJe20pSx9wVtmDr9C3" : {
+      "displayName" : "Evan Wallace",
+      "dob" : "1988-06-06",
+      "employer" : "Berkley Re",
+      "jobTitle" : "Software Developer"
+    },
+    "gcdjQ0FtGmOExQuRqKCs88E6KH03" : {
+      "displayName" : "Evan",
+      "dob" : "1988-06-06",
+      "employer" : "qweqwe",
+      "jobTitle" : "asdasd"
+    }
+	},
+  "event_types" : {
+	"1": {"event_type":"Birthday"},
+	"2": {"event_type":"Farewell"},
+	"3": {"event_type":"Wedding"},
+	"4": {"event_type":"Work function"},
+	"5": {"event_type":"Lecture"},
+	"6": {"event_type":"Baby Shower"},
+	"7": {"event_type":"Educational"},
+	"8": {"event_type":"Other"},
+	"9": {"event_type":"Dinner"},
+	"10": {"event_type":"Breakfast"},
+	"11": {"event_type":"Lunch"},
+	"12": {"event_type":"Movies"},
+	"13": {"event_type":"Game night"},
+	"14": {"event_type":"Outdoor adventure"},
+	"15": {"event_type":"BBQ"}
+  },
+  "events" : {
+	"1": {
+		"event_name": "Dummy Birthday Bash!",
+		"event_Type": "1",
+		"created_by": "4cYJbQV1u7fJe20pSx9wVtmDr9C3",
+		"host": "Evan Wallace",
+		"start": "1470724173834",
+		"end" : "1470724173834",
+		"guests": {
+			"1": {
+			"name": "Francesca Krakue",
+			"isUser": "false",
+			"uid": ""
+			},
+			"2": {
+			"name": "Evan",
+			"isUser": "true",
+			"uid": "gcdjQ0FtGmOExQuRqKCs88E6KH03"
+			}
+		},
+		"message": "This is a test birthday meetup!"
+	}
+  }
+}
