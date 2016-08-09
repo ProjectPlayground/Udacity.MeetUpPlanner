@@ -23,6 +23,9 @@ module.exports = function (defaults) {
       'font-awesome/css/font-awesome.min.css',
       'font-awesome/fonts/fontawesome-webfont.woff',
       'font-awesome/fonts/fontawesome-webfont.woff2',
+      'bootstrap/dist/css/bootstrap.css',
+      'bootstrap/dist/js/bootstrap.js',
+      'jquery/dist/jquery.js',
     ]
   });
 };
