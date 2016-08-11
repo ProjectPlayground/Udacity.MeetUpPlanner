@@ -16,8 +16,6 @@ export class EventListComponent implements OnInit {
 
   ngOnInit() {
     this.af.database.list('\events')
-    .take(10)
     .subscribe(e => this.events = e);
   }
-
 }
