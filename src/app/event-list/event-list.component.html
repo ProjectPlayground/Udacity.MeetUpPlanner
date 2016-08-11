@@ -1,7 +1,18 @@
 <div class="event-list">
   <div *ngFor="let event of events" class="event-list-item">
     <div class="event-list-content">
-      {{event.event_name | json}}
+
+      <div class="event_name">
+      <strong>{{event.event_name}}</strong>
+      </div>
+
+      <div class="host">
+        Host: {{event.host}}
+      </div>
+
+      <div class="guests">
+        {{event.guests.length}} Guests going
+      </div>
     </div>
   </div>
 </div>

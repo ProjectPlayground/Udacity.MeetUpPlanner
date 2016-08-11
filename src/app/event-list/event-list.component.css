@@ -40,7 +40,10 @@
   }
 }
 
-
-.event-list-item p {
+/*.event-list-item p {
 	flex: 1 0 auto;
+}*/
+
+.event_name {
+  font-size: 20px;
 }
