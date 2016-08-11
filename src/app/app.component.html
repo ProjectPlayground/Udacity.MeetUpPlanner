@@ -16,6 +16,7 @@
 
     <ul class="nav navbar-nav navbar-left">
       <li><a routerLink="/events" routerLinkActive="active">Explore</a></li>
+      <li><a routerLink="/events/add" routerLinkActive="active">Create</a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right" *ngIf="!loggedIn">
@@ -27,7 +28,6 @@
       <li><a routerLink="/profile/:{{user?.uid}}">{{user.email}}</a></li>
       <li><a routerLink="/login" routerLinkActive="active" (click)="LogOut()">Log Out</a></li>
     </ul>
-
   </nav>
 
   <router-outlet></router-outlet>
