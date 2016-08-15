@@ -4,15 +4,23 @@ import { SignupComponent } from './signup';
 import { ProfileComponent } from './profile';
 import { AppComponent } from './app.component';
 import { EventListComponent } from './event-list';
-import { EventCreateComponent } from './event-create';
+import { EventCreateComponent, EventCreateRoutes } from './event-create';
 
 const routes: RouterConfig = [
   { path: '', component: AppComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'profile/:uid', component: ProfileComponent},
-  { path: 'events', component: EventListComponent},
-  { path: 'events/add', component: EventCreateComponent}
+  { path: 'profile/:uid', component: ProfileComponent },
+  { path: 'events', component: EventListComponent },
+  {
+    path: 'event',
+    component: EventCreateComponent,
+    children:
+    [
+      ...EventCreateRoutes
+    ]
+  }
+
 ];
 
 export const appRouterProviders = [

@@ -1,0 +1,21 @@
+<div class="guest-container">
+  <h3> Guest List</h3>
+
+  <div class="row">
+    <form [formGroup]="guestFormData" (submit)="addGuest()">
+      <span>
+            <validated-input [control]="guestFormData.controls['name']" class="col-md-5">
+                <input type="text" formControlName='name' class="form-control" id="name" placeholder="Enter Guest's Name">
+            </validated-input>
+            </span>
+
+      <span>
+            <validated-input [control]="guestFormData.controls['email']" class="col-md-5">
+                <input type="text" formControlName='email' class="form-control" id="name" placeholder="Enter Guest's Email">
+            </validated-input>
+            </span>
+
+      <button class="btn btn-primary col-md-1"><i class="fa fa-plus" aria-hidden="true"></i></button>
+    </form>
+  </div>
+</div>

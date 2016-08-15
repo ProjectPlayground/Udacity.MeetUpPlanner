@@ -10,7 +10,7 @@ import { UserModel } from './../shared';
   selector: 'app-profile',
   templateUrl: 'profile.component.html',
   directives: [CORE_DIRECTIVES, REACTIVE_FORM_DIRECTIVES],
-  styleUrls: ['profile.component.css']
+  styleUrls: ['./../app.component.css', 'profile.component.css']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 

@@ -6,7 +6,7 @@ import { EventModel } from './../shared';
   moduleId: module.id,
   selector: 'app-event-list',
   templateUrl: 'event-list.component.html',
-  styleUrls: ['event-list.component.css']
+  styleUrls: ['./../app.component.css', 'event-list.component.css']
 })
 export class EventListComponent implements OnInit {
 
@@ -15,7 +15,6 @@ export class EventListComponent implements OnInit {
   constructor(private af: AngularFire) { }
 
   ngOnInit() {
-    this.af.database.list('\events')
-    .subscribe(e => this.events = e);
+    this.af.database.list('\events').subscribe(e => this.events = e);
   }
 }

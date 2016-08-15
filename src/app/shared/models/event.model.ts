@@ -1,3 +1,5 @@
+import { GuestModel } from './guest.model';
+
 export class EventModel {
     created_by: string;
     end: Date;
@@ -7,10 +9,4 @@ export class EventModel {
     host: string;
     message: string;
     start: Date;
-}
-
-export class GuestModel {
-    isUser: boolean;
-    name: string;
-    uid: string;
 }
