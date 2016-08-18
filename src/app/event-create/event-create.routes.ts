@@ -3,10 +3,15 @@ import { GuestListComponent } from './guest-list/guest-list.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { EventLocationComponent } from './event-location/event-location.component';
 import { EventMessageComponent } from './event-message/event-message.component';
+import { EventDataResolver } from './event.resolver';
 
 export const EventCreateRoutes: Route[] = [
     {
+        path: ''
+    },
+    {
         path: ':id/details',
+        resolve: {event: EventDataResolver},
         component: EventDetailsComponent
     },
     {
@@ -21,4 +26,4 @@ export const EventCreateRoutes: Route[] = [
         path: ':id/message',
         component: EventMessageComponent
     }
-]
+];

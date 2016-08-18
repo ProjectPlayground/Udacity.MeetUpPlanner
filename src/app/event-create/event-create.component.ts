@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
-import { REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl } from '@angular/forms';
-import { AngularFire } from 'angularfire2';
+import { ROUTER_DIRECTIVES, ActivatedRoute, Router } from '@angular/router';
+import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
+import { EventCreationService } from './event-create.service';
 import { FORM_EXTENSION_DIRECTIVES, CustomValidatorsService } from './../shared/form-extensions';
 import 'rxjs/add/operator/map';
 
@@ -11,39 +11,29 @@ import 'rxjs/add/operator/map';
   templateUrl: 'event-create.component.html',
   directives: [REACTIVE_FORM_DIRECTIVES, FORM_EXTENSION_DIRECTIVES, ROUTER_DIRECTIVES],
   styleUrls: ['./../app.component.css', 'event-create.component.css'],
-  providers: [CustomValidatorsService]
+  providers: [EventCreationService, CustomValidatorsService]
 })
 export class EventCreateComponent implements OnInit {
 
-  private formData: FormGroup;
-  private eventId: Number;
+  private eventId;
 
   constructor(
-    private af: AngularFire,
-    private validators: CustomValidatorsService) { }
-
-  ngOnInit() {
-    this.getNextEventId();
-    this.af.auth.subscribe(authState => this.getUser(authState));
+    private eventService: EventCreationService,
+    private validators: CustomValidatorsService,
+    private router: Router,
+    private r: ActivatedRoute) {
+    r.params.forEach(p => this.eventId = p['id']);
   }
 
-
-  getUser(authState) {
-    if (authState != null && authState.auth != null) {
-      this.af.database.object(`/users/${authState.auth.uid}`)
-        .subscribe(u => {
-          (<FormControl>this.formData.controls['host']).updateValue(u.displayName);
-        });
-
-      (<FormControl>this.formData.controls['created_by']).updateValue(authState.auth.uid);
-    } else {
-      console.log('send 403');
+  ngOnInit() {
+    console.log(this.eventId);
+    if (this.eventId == null) {
+      this.createNewEvent();
     }
   }
 
-  getNextEventId() {
-    this.af.database.list('/events')
-      .map(list => list.length)
-      .subscribe(length => this.eventId = length++);
+   createNewEvent() {
+    // this.eventService.generateNextEventId()
+    //   .subscribe(id => this.router.navigate([`event/${id + 1}/details`]));
   }
 }

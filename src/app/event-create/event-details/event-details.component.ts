@@ -1,29 +1,52 @@
 import { Component, OnInit } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFire } from 'angularfire2';
 import { FORM_EXTENSION_DIRECTIVES, CustomValidatorsService } from './../../shared/form-extensions';
 import 'rxjs/add/operator/map';
+import { EventDataResolver } from './../event.resolver';
+import { EventCreationService } from './../event-create.service';
 
 @Component({
   moduleId: module.id,
   selector: 'app-event-details',
   templateUrl: 'event-details.component.html',
-  directives: [REACTIVE_FORM_DIRECTIVES, FORM_EXTENSION_DIRECTIVES],
-  styleUrls: ['event-details.component.css']
+  directives: [REACTIVE_FORM_DIRECTIVES, FORM_EXTENSION_DIRECTIVES, NgClass],
+  providers: [EventDataResolver],
+  styleUrls: ['../event-create.component.css', 'event-details.component.css']
 })
 export class EventDetailsComponent implements OnInit {
 
   private formData: FormGroup;
+  private event = null;
   private eventId: Number;
 
   constructor(
     private af: AngularFire,
     private fb: FormBuilder,
-    private validators: CustomValidatorsService) { }
+    private validators: CustomValidatorsService,
+    private eventService: EventCreationService,
+    private router: Router,
+    private route: ActivatedRoute) {
+
+    this.buildEventForm();
+    route.params.forEach(p => this.eventId = p['id']);
+    route.data.forEach(d => {
+      this.event = d['event'];
+      //this.formData.patch
+    });
+  }
 
   ngOnInit() {
-    this.getNextEventId();
-    this.buildEventForm();
+    // this.af.database.object(`/events/${this.eventId}`).forEach(e => this.event = e);
+
+    if (this.event == null) {
+      this.newEventLogic();
+    }
+  }
+
+  newEventLogic() {
     this.af.auth.subscribe(authState => this.getUser(authState));
   }
 
@@ -31,14 +54,12 @@ export class EventDetailsComponent implements OnInit {
     let now = new Date(Date()).toISOString().slice(0, 16);
 
     this.formData = this.fb.group({
-      created_by: ['', Validators.required],
-      name: ['', Validators.required],
-      type: ['', Validators.required],
+      created_by: [''],
+      event_name: ['', Validators.required],
+      event_type: ['', Validators.required],
       host: ['', Validators.required],
       start: [now, Validators.required],
-      end: [now, Validators.required],
-      location: ['', Validators.required],
-      message: ['']
+      end: [now, Validators.required]
     });
   }
 
@@ -50,27 +71,15 @@ export class EventDetailsComponent implements OnInit {
         });
 
       (<FormControl>this.formData.controls['created_by']).updateValue(authState.auth.uid);
-    } else {
-      console.log('send 403');
     }
   }
 
   createNewEvent() {
-
-    let userDetails = {
-      displayName: this.formData.controls['name'].value,
-      dob: this.formData.controls['dob'].value,
-      employer: this.formData.controls['employer'].value,
-      jobTitle: this.formData.controls['jobTitle'].value
-    };
-
-    this.af.database.object(`/events/${this.getNextEventId()}`).update(userDetails);
+    this.af.database.object(`/events/${this.eventId}`).update(this.formData.value);
   }
 
-
-  getNextEventId() {
-    this.af.database.list('/events')
-      .map(list => list.length)
-      .subscribe(length => this.eventId = length++);
+  next() {
+    this.createNewEvent();
+    this.router.navigate([`event/${this.eventId}/guests`]);
   }
 }

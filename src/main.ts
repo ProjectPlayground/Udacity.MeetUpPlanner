@@ -3,6 +3,7 @@ import { enableProdMode } from '@angular/core';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import { AppComponent, environment, appRouterProviders  } from './app/';
 import { FIREBASE_PROVIDERS, defaultFirebase, firebaseAuthConfig, AuthProviders, AuthMethods } from 'angularfire2';
+import { EventDataResolver } from './app/event-create/event.resolver';
 
 if (environment.production) {
   enableProdMode();
@@ -23,6 +24,7 @@ bootstrap(AppComponent,
   firebaseAuthConfig({
     provider: AuthProviders.Password,
     method: AuthMethods.Password
-  })
+  }),
+  EventDataResolver
 ])
 .catch(err => console.error(err));
