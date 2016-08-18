@@ -6,3 +6,17 @@ li.create-section {
 .event-creation {
     min-height: 60%;
 }
+
+.section-container {
+    min-height: 375px;
+}
+
+.btn-back {
+    margin-bottom: 7px;
+    float: left;
+}
+
+.btn-next {
+    margin-bottom: 7px;
+    float: right;
+}

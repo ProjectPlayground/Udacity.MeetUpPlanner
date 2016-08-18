@@ -28,7 +28,6 @@ export class GuestListComponent implements OnInit {
 
   addGuest() {
     let guest = new GuestModel(this.guestFormData.controls['name'].value, this.guestFormData.controls['email'].value);
-    console.log(guest);
     this.guestList.push(guest);
     this.buildGuestForm();
   }
@@ -40,4 +39,7 @@ export class GuestListComponent implements OnInit {
     });
   }
 
+  removeGuest(guest: GuestModel) {
+    this.guestList.splice(this.guestList.indexOf(guest), 1);
+  }
 }

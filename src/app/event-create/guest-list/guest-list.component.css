@@ -1,0 +1,38 @@
+.guest-container {
+ display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  flex-flow: column;
+  -webkit-flex-flow: column;
+  justify-content: space-around;
+}
+
+.guest-list-controls {
+    height: 15%;
+    padding: 1em;
+}
+
+.guest-list {
+    height: 85%;
+    flex-direction: column;
+    width: 100%;
+}
+
+.guest-list-item {
+    border-radius: 3px;
+    background-color: #fff;
+    margin-bottom: 16px;
+    border: 1px solid rgba(0,0,0,.12)!important;
+    border-bottom: 1px solid rgba(0,0,0,.26)!important;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding;
+    -o-background-clip: padding-box;
+    -ms-background-clip: padding-box;
+    -khtml-background-clip: padding-box;
+    background-clip: padding-box;
+    display: flex;
+    padding: 1em;
+}

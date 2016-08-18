@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
@@ -18,68 +18,13 @@ import { EventCreationService } from './../event-create.service';
 })
 export class EventDetailsComponent implements OnInit {
 
-  private formData: FormGroup;
-  private event = null;
-  private eventId: Number;
+  @Input() formData: FormGroup;
 
   constructor(
     private af: AngularFire,
     private fb: FormBuilder,
     private validators: CustomValidatorsService,
-    private eventService: EventCreationService,
-    private router: Router,
-    private route: ActivatedRoute) {
+    private eventService: EventCreationService) { }
 
-    this.buildEventForm();
-    route.params.forEach(p => this.eventId = p['id']);
-    route.data.forEach(d => {
-      this.event = d['event'];
-    });
-  }
-
-  ngOnInit() {
-    if (this.event == null) {
-      this.newEventLogic();
-    }
-  }
-
-  newEventLogic() {
-    this.af.auth.subscribe(authState => this.getUser(authState));
-  }
-
-  buildEventForm() {
-    let now = new Date(Date()).toISOString().slice(0, 16);
-
-    this.formData = this.fb.group({
-      id: [this.eventId],
-      created_by: [''],
-      event_name: ['', Validators.required],
-      event_type: ['', Validators.required],
-      host: ['', Validators.required],
-      start: [now, Validators.required],
-      end: [now, Validators.required]
-    });
-  }
-
-  getUser(authState) {
-
-    // TODO tidy this up, more resolvers?
-    if (authState != null && authState.auth != null) {
-      this.af.database.object(`/users/${authState.auth.uid}`)
-        .subscribe(u => {
-          (<FormControl>this.formData.controls['host']).updateValue(u.displayName);
-        });
-
-      (<FormControl>this.formData.controls['created_by']).updateValue(authState.auth.uid);
-    }
-  }
-
-  postEventDetails() {
-    this.af.database.object(`/events/${this.eventId}`).update(this.formData.value);
-  }
-
-  next() {
-    this.postEventDetails();
-    this.router.navigate([`event/${this.eventId}/guests`]);
-  }
+  ngOnInit() { }
 }

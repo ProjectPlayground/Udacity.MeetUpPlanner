@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-event-location',
+  selector: 'event-location',
   templateUrl: 'event-location.component.html',
   styleUrls: ['event-location.component.css']
 })

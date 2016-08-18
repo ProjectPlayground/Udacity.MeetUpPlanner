@@ -7,15 +7,14 @@
                 <input type="text" [formControl]="formData.controls['event_name']" class="form-control" id="name" placeholder="Enter an event name">
             </validated-input>
 
-            <validated-input [control]="formData.controls['event_type']">
-                <event-type-select [control]="formData.controls['event_type']"></event-type-select>
+            <validated-input [control]="formData.controls['event_Type']">
+                <event-type-select [control]="formData.controls['event_Type']"></event-type-select>
             </validated-input>
 
             <validated-input [control]="formData.controls['host']">
                 <label for="host" class="control-label">Host</label>
                 <input type="text" [formControl]="formData.controls['host']" class="form-control" id="host">
             </validated-input>
-
 
             <validated-input [control]="formData.controls['start']">
                 <label for="start" class="control-label">Start Time</label>
@@ -27,7 +26,5 @@
                 <input type="datetime-local" [formControl]="formData.controls['end']" class="form-control" id="end">
             </validated-input>
         </form>
-
-        <button class="btn btn-primary" [disabled]="!formData.valid" style="float: right; margin-bottom: 7px;" (click)="next()">Next</button>
     </div>
 </div>

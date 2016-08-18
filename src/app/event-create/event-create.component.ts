@@ -4,6 +4,9 @@ import { ROUTER_DIRECTIVES, ActivatedRoute, Router } from '@angular/router';
 import { EventCreationService } from './event-create.service';
 import { CustomValidatorsService } from './../shared/form-extensions';
 import { EventDetailsComponent } from './event-details';
+import { GuestListComponent } from './guest-list';
+import { EventLocationComponent } from './event-location';
+import { EventMessageComponent } from './event-message';
 
 import 'rxjs/add/operator/map';
 
@@ -20,12 +23,15 @@ export class EventSection {
 
 @Component({
   moduleId: module.id,
-  selector: 'app-event-create',
+  selector: 'event-create',
   templateUrl: 'event-create.component.html',
   directives:
   [
     ROUTER_DIRECTIVES,
     EventDetailsComponent,
+    GuestListComponent,
+    EventLocationComponent,
+    EventMessageComponent
   ],
   styleUrls: ['./../app.component.css', 'event-create.component.css'],
   providers: [EventCreationService, CustomValidatorsService]
@@ -44,13 +50,12 @@ export class EventCreateComponent implements OnInit {
     private eventService: EventCreationService,
     private validators: CustomValidatorsService,
     private router: Router,
-    private r: ActivatedRoute) {
-
-
-    this.buildFormData();
+    private r: ActivatedRoute) {  
     r.data.forEach(d => {
       this.newEvent = d['newEvent'];
     });
+    
+    this.buildFormData();
   }
 
   ngOnInit() {
@@ -66,10 +71,11 @@ export class EventCreateComponent implements OnInit {
       id: [''],
       created_by: [''],
       event_name: ['', Validators.required],
-      event_type: ['', Validators.required],
+      event_Type: ['', Validators.required],
       host: ['', Validators.required],
       start: [now, Validators.required],
-      end: [now, Validators.required]
+      end: [now, Validators.required],
+      message: ['', Validators.required],
     });
   }
 
@@ -81,6 +87,5 @@ export class EventCreateComponent implements OnInit {
 
   changeSection(section: EventSections) {
     this.currentSection.section = section;
-    console.log(section);
   }
 }
