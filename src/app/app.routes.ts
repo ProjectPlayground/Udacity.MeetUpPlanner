@@ -4,7 +4,7 @@ import { SignupComponent } from './signup';
 import { ProfileComponent } from './profile';
 import { AppComponent } from './app.component';
 import { EventListComponent } from './event-list';
-import { EventCreateComponent, EventCreateRoutes } from './event-create';
+import { EventCreateComponent } from './event-create';
 import {EventListResolver} from './event-list';
 import { ProfileDataResolver } from './profile';
 
@@ -24,11 +24,7 @@ const routes: RouterConfig = [
   { path: 'events', component: EventListComponent },
   {
     path: 'event',
-    component: EventCreateComponent,
-    children:
-    [
-      ...EventCreateRoutes
-    ]
+    component: EventCreateComponent
   },
   {
     path: 'newevent',

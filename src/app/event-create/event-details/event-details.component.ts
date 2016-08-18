@@ -10,7 +10,7 @@ import { EventCreationService } from './../event-create.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-event-details',
+  selector: 'event-details',
   templateUrl: 'event-details.component.html',
   directives: [REACTIVE_FORM_DIRECTIVES, FORM_EXTENSION_DIRECTIVES, NgClass],
   providers: [EventDataResolver],

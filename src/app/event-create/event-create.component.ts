@@ -1,27 +1,53 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ROUTER_DIRECTIVES, ActivatedRoute, Router } from '@angular/router';
-import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 import { EventCreationService } from './event-create.service';
-import { FORM_EXTENSION_DIRECTIVES, CustomValidatorsService } from './../shared/form-extensions';
+import { CustomValidatorsService } from './../shared/form-extensions';
+import { EventDetailsComponent } from './event-details';
+
 import 'rxjs/add/operator/map';
+
+export enum EventSections {
+  Details,
+  Guests,
+  Location,
+  Message
+}
+
+export class EventSection {
+  constructor(public section: EventSections) {}
+}
 
 @Component({
   moduleId: module.id,
   selector: 'app-event-create',
   templateUrl: 'event-create.component.html',
-  directives: [REACTIVE_FORM_DIRECTIVES, FORM_EXTENSION_DIRECTIVES, ROUTER_DIRECTIVES],
+  directives:
+  [
+    ROUTER_DIRECTIVES,
+    EventDetailsComponent,
+  ],
   styleUrls: ['./../app.component.css', 'event-create.component.css'],
   providers: [EventCreationService, CustomValidatorsService]
 })
 export class EventCreateComponent implements OnInit {
 
   private newEvent: boolean;
+  private formData: FormGroup;
+  private eventId: Number;
+
+  private currentSection = new EventSection(EventSections.Details);
+  private sections = EventSections;
 
   constructor(
+    private fb: FormBuilder,
     private eventService: EventCreationService,
     private validators: CustomValidatorsService,
     private router: Router,
     private r: ActivatedRoute) {
+
+
+    this.buildFormData();
     r.data.forEach(d => {
       this.newEvent = d['newEvent'];
     });
@@ -33,8 +59,28 @@ export class EventCreateComponent implements OnInit {
     }
   }
 
+  buildFormData() {
+    let now = new Date(Date()).toISOString().slice(0, 16);
+
+    this.formData = this.fb.group({
+      id: [''],
+      created_by: [''],
+      event_name: ['', Validators.required],
+      event_type: ['', Validators.required],
+      host: ['', Validators.required],
+      start: [now, Validators.required],
+      end: [now, Validators.required]
+    });
+  }
+
+
   createNewEvent() {
     this.eventService.generateNextEventId()
-      .subscribe(id => this.router.navigate([`event/${id + 1}/details`]));
+      .subscribe(id => this.eventId = id + 1);
+  }
+
+  changeSection(section: EventSections) {
+    this.currentSection.section = section;
+    console.log(section);
   }
 }

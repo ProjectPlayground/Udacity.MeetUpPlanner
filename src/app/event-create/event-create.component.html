@@ -2,12 +2,18 @@
     <div class="content">
         <div class="container">
             <ul class="nav nav-tabs">
-                <li class="create-section" role="presentation"><a href='#'>Details</a></li>
-                <li class="create-section" role="presentation"><a href='#'>Guests</a></li>
-                <li class="create-section" role="presentation"><a href='#'>Location</a></li>
-                <li class="create-section" role="presentation"><a href='#'>Message</a></li>
+                <li class="create-section" role="presentation"><a (click)="changeSection(sections.Details)">Details</a></li>
+                <li class="create-section" role="presentation"><a (click)="changeSection(sections.Guests)">Guests</a></li>
+                <li class="create-section" role="presentation"><a (click)="changeSection(sections.Location)">Location</a></li>
+                <li class="create-section" role="presentation"><a (click)="changeSection(sections.Message)">Message</a></li>
             </ul>
-            <router-outlet></router-outlet>
+
+            <div [ngSwitch]="currentSection.section">
+                <event-details *ngSwitchCase="sections.Details"></event-details>
+                <div *ngSwitchCase="sections.Guests">show Guests</div>
+                <div *ngSwitchCase="sections.Location">show Location</div>
+                <div *ngSwitchCase="sections.Message">show Message</div>
+            </div>
         </div>
     </div>
 </div>
