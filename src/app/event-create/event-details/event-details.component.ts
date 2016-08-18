@@ -74,12 +74,12 @@ export class EventDetailsComponent implements OnInit {
     }
   }
 
-  createNewEvent() {
+  postEventDetails() {
     this.af.database.object(`/events/${this.eventId}`).update(this.formData.value);
   }
 
   next() {
-    this.createNewEvent();
+    this.postEventDetails();
     this.router.navigate([`event/${this.eventId}/guests`]);
   }
 }

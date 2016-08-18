@@ -29,5 +29,27 @@
                 </form>
             </div>
         </div>
+
+        <div class="container">
+            <div class="header-section">
+                My Events
+            </div>
+
+            <div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
+                <ul class="event-list">
+                    <li *ngFor="let event of events; #i = index">
+                        <time datetime="2014-07-20 0000">
+                            <span class="day">{{event.start | date:'d'}}</span>
+                            <span class="month">{{event.start | date:'MMM'}}</span>
+                        </time>
+                        <div class="info">
+                            <button style="float:right" class="btn btn-default" (click)="navigateToEvent(event.id)">Edit</button>
+                            <h2 class="title">{{event.event_name}}</h2>
+                            <p class="desc">{{event?.message}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>

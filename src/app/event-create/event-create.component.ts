@@ -26,14 +26,8 @@ export class EventCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.eventId);
     if (this.eventId == null) {
-      this.createNewEvent();
-    }
-  }
 
-   createNewEvent() {
-    // this.eventService.generateNextEventId()
-    //   .subscribe(id => this.router.navigate([`event/${id + 1}/details`]));
+    }
   }
 }

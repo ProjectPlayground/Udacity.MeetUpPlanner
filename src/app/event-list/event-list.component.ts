@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { EventModel } from './../shared';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -10,9 +11,16 @@ import { EventModel } from './../shared';
 })
 export class EventListComponent implements OnInit {
 
+  @Input() userId;
+  @Input() allowEdit = false;
+
   private events: EventModel[] = [];
 
-  constructor(private af: AngularFire) { }
+  constructor(
+    private af: AngularFire,
+    private route: ActivatedRoute) {
+    route.data.forEach(d => console.log(d));
+  }
 
   ngOnInit() {
     this.af.database.list('\events').subscribe(e => this.events = e);
