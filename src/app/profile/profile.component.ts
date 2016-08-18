@@ -69,4 +69,8 @@ export class ProfileComponent implements OnInit {
   navigateToEvent(eventId: string) {
     this.router.navigate([`event/${eventId}/details`]);
   }
+
+  newEvent() {
+    this.router.navigate([`newevent`]);
+  }
 }

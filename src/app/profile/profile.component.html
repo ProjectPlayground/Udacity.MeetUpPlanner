@@ -35,10 +35,10 @@
                 My Events
             </div>
 
-            <div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
-                <ul class="event-list">
-                    <li *ngFor="let event of events; #i = index">
-                        <time datetime="2014-07-20 0000">
+            <div class="body-section">
+                <ul class="event-list" *ngIf="events.length > 0">
+                    <li *ngFor="let event of events">
+                        <time>
                             <span class="day">{{event.start | date:'d'}}</span>
                             <span class="month">{{event.start | date:'MMM'}}</span>
                         </time>
@@ -49,6 +49,12 @@
                         </div>
                     </li>
                 </ul>
+
+                <div *ngIf="events.length == 0">
+                    No events to display
+                </div>
+
+                <button style="float:right; margin-bottom: 7px" class="btn btn-default" (click)="newEvent()">Create a new event!</button>
             </div>
         </div>
     </div>

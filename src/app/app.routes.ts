@@ -29,6 +29,11 @@ const routes: RouterConfig = [
     [
       ...EventCreateRoutes
     ]
+  },
+  {
+    path: 'newevent',
+    component: EventCreateComponent,
+    data: { newEvent: true }
   }
 
 ];

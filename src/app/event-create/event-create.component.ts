@@ -15,19 +15,26 @@ import 'rxjs/add/operator/map';
 })
 export class EventCreateComponent implements OnInit {
 
-  private eventId;
+  private newEvent: boolean;
 
   constructor(
     private eventService: EventCreationService,
     private validators: CustomValidatorsService,
     private router: Router,
     private r: ActivatedRoute) {
-    r.params.forEach(p => this.eventId = p['id']);
+    r.data.forEach(d => {
+      this.newEvent = d['newEvent'];
+    });
   }
 
   ngOnInit() {
-    if (this.eventId == null) {
-
+    if (this.newEvent) {
+      this.createNewEvent();
     }
+  }
+
+  createNewEvent() {
+    this.eventService.generateNextEventId()
+      .subscribe(id => this.router.navigate([`event/${id + 1}/details`]));
   }
 }

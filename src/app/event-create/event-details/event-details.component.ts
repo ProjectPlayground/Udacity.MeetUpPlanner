@@ -34,13 +34,10 @@ export class EventDetailsComponent implements OnInit {
     route.params.forEach(p => this.eventId = p['id']);
     route.data.forEach(d => {
       this.event = d['event'];
-      //this.formData.patch
     });
   }
 
   ngOnInit() {
-    // this.af.database.object(`/events/${this.eventId}`).forEach(e => this.event = e);
-
     if (this.event == null) {
       this.newEventLogic();
     }
@@ -54,6 +51,7 @@ export class EventDetailsComponent implements OnInit {
     let now = new Date(Date()).toISOString().slice(0, 16);
 
     this.formData = this.fb.group({
+      id: [this.eventId],
       created_by: [''],
       event_name: ['', Validators.required],
       event_type: ['', Validators.required],
@@ -64,6 +62,8 @@ export class EventDetailsComponent implements OnInit {
   }
 
   getUser(authState) {
+
+    // TODO tidy this up, more resolvers?
     if (authState != null && authState.auth != null) {
       this.af.database.object(`/users/${authState.auth.uid}`)
         .subscribe(u => {
