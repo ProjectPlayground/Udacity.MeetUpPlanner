@@ -1,0 +1,12 @@
+<form [formGroup]="formData">
+    <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea
+            class="form-control textarea-message"
+            row="8" 
+            cols="50" 
+            type="textarea" 
+            id="message" 
+            [formControl]="formData.controls['message']"> </textarea>
+    </div>
+</form>

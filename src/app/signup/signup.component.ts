@@ -49,7 +49,8 @@ export class SignupComponent implements OnInit {
       jobTitle: [''],
       employer: [''],
       dob: [''],
-      pass: ['', Validators.compose(
+      pass: ['',
+      Validators.compose(
         [Validators.required,
           Validators.minLength(8),
           this.validators.containsLowerCase,

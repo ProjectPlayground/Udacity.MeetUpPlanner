@@ -1,47 +1,48 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup } from '@angular/forms';
 import { CORE_DIRECTIVES } from '@angular/common';
-import { ActivatedRoute }  from '@angular/router';
+import { ActivatedRoute, Router }  from '@angular/router';
 import { AngularFire } from 'angularfire2';
 import { UserModel } from './../shared';
+import { EventListComponent } from './../event-list';
 
 @Component({
   moduleId: module.id,
   selector: 'app-profile',
   templateUrl: 'profile.component.html',
-  directives: [CORE_DIRECTIVES, REACTIVE_FORM_DIRECTIVES],
-  styleUrls: ['profile.component.css']
+  directives: [CORE_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, EventListComponent],
+  styleUrls: ['./../app.component.css', 'profile.component.css']
 })
-export class ProfileComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnInit {
 
   private uid = null;
   private user: UserModel = new UserModel();
-  private routeParams: any;
+  private events;
   private formData: FormGroup;
 
   constructor(
     public af: AngularFire,
     private route: ActivatedRoute,
-    private fb: FormBuilder) { }
+    private router: Router,
+    private fb: FormBuilder) {
+    route.params.forEach(p => this.uid = p['uid']);
+    route.data.forEach(d => {
+      this.events = d['events'];
+      this.user = d['user'];
+    });
+  }
 
   ngOnInit() {
+    console.log(this.events);
     this.buildUpdateForm();
     this.af.auth.subscribe(authState => this.checkAuthState(authState));
-
-    this.routeParams = this.route.params.subscribe(p => this.uid = p['uid']);
-
-    this.af.database.object(`/users/${this.uid}`)
-      .subscribe(u => {
-        this.user = u;
-        this.buildUpdateForm();
-      });
   }
 
   checkAuthState(authState) {
     if (this.uid !== null ||
-          (authState !== null && authState.auth.uid !== this.uid)) {
-        // TODO: Create unauthorised/forbidden pages;
-        console.log('send 403');
+      (authState !== null && authState.auth.uid !== this.uid)) {
+      // TODO: Create unauthorised/forbidden pages;
+      console.log('send 403');
     }
   }
 
@@ -65,7 +66,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.af.database.object(`/users/${this.uid}`).update(userDetails);
   }
 
-  ngOnDestroy() {
-    //this.routeParams.unsuscribe();
+  newEvent() {
+    this.router.navigate([`newevent`]);
   }
 }

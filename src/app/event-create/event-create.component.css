@@ -1,0 +1,25 @@
+li.create-section {
+    width: 25%;
+    text-align: center;
+}
+
+.event-creation {
+    min-height: 60%;
+}
+
+.section-container {
+    min-height: 375px;
+}
+
+.create-event-btn {
+  background-color: #005b96;
+  color: white;
+  padding: 7px;
+  width: 100%;
+  margin-bottom: 7px;
+}
+
+.event-nav {
+    margin-bottom: 7px;
+    float: right;
+}

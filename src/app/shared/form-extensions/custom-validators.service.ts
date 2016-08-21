@@ -1,19 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
 
-
-
-export class ValidationMessages {
-  valid: boolean;
-  message: string;
-
-  constructor(valid, message) {
-    this.valid = valid;
-    this.message = message;
-  }
-}
-
-
 const requiredMessage = 'This field is required';
 const passwordMatchMessage = 'Passwords do not match';
 const invalidEmailMessage = 'Not a valid email';
