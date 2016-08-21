@@ -2,18 +2,18 @@
   <div class="guest-list-controls">
     <form [formGroup]="guestFormData" (submit)="addGuest()">
       <span>
-            <validated-input [control]="guestFormData.controls['name']" class="col-md-5">
+            <validated-input [control]="guestFormData.controls['name']" class="col-xs-5">
                 <input type="text" [formControl]="guestFormData.controls['name']" class="form-control" id="name" placeholder="Enter Guest's Name">
             </validated-input>
             </span>
 
       <span>
-            <validated-input [control]="guestFormData.controls['email']" class="col-md-5">
+            <validated-input [control]="guestFormData.controls['email']" class="col-xs-5">
                 <input type="text" [formControl]="guestFormData.controls['email']" class="form-control" id="name" placeholder="Enter Guest's Email">
             </validated-input>
             </span>
 
-      <button class="btn btn-primary col-md-1"><i class="fa fa-plus" aria-hidden="true"></i></button>
+      <button class="btn btn-primary col-xs-2"><i class="fa fa-plus" aria-hidden="true"></i></button>
     </form>
   </div>
   <div class="guest-list">

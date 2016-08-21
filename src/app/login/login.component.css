@@ -1,49 +1,6 @@
-.login-page {
-  font-family: 'Metropolis';
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 24em;
-}
-
-.login-content {
-    width: 100%;
-    padding: .8em 1em 0;
-    border-radius: 3px;
-}
-
-.login-container {
-  flex: 1;
-  max-width: 50%;
-}
-
-.login-header {
-  padding: 2.5%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  background-color: #fff;
-  border-bottom: 1px solid #669CC0;
-}
-
-.login-body {
-  padding: 7px;
-  background-color: #fff;
-}
-
-.login-footer {
-  background-color: #fff;
-  border-top: 1px solid #669CC0;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  padding: 2.5%;
-}
-
 .login-btn {
   background-color: #005b96;
-  color: white;
+  color: #fff;
   padding: 7px;
   width: 100%;
 }

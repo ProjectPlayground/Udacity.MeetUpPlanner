@@ -65,6 +65,7 @@ const barrels: string[] = [
   'app/event-create/event-details',
   'app/event-create/event-location',
   'app/event-create/event-message',
+  'app/home',
   /** @cli-barrel */
 ];
 

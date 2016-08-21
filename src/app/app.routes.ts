@@ -5,11 +5,13 @@ import { ProfileComponent } from './profile';
 import { AppComponent } from './app.component';
 import { EventListComponent } from './event-list';
 import { EventCreateComponent } from './event-create';
-import {EventListResolver} from './event-list';
+import { EventListResolver } from './event-list';
 import { ProfileDataResolver } from './profile';
+import { HomeComponent } from './home'
 
 const routes: RouterConfig = [
-  { path: '', component: AppComponent },
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent }, 
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   {

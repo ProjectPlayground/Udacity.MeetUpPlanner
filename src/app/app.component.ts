@@ -14,9 +14,7 @@ export class AppComponent implements OnInit {
   private loggedIn: boolean;
   private user = null;
 
-  constructor(public af: AngularFire, public router: Router) {
-
-  }
+  constructor(public af: AngularFire, public router: Router) { }
 
   ngOnInit() {
     this.af.auth.subscribe(authState => {
