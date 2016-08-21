@@ -67,7 +67,7 @@ body {
 
 .container {
   flex: 1;
-  max-width: 50%;
+  margin: auto;
     border-radius: 3px;
     background-color: #fff;
     margin-bottom: 16px;
@@ -79,4 +79,16 @@ body {
     -ms-background-clip: padding-box;
     -khtml-background-clip: padding-box;
     background-clip: padding-box;
+}
+
+.header {
+    padding: 2.5%;
+  background-color: #fff;
+  border-bottom: 1px solid #669CC0;
+}
+
+.footer {
+          padding: 2.5%;
+  background-color: #fff;
+  border-top: 1px solid #669CC0;
 }
