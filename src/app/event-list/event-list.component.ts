@@ -9,20 +9,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: 'event-list.component.html',
   styleUrls: ['./../app.component.css', 'event-list.component.css']
 })
-export class EventListComponent implements OnInit {
-
-  @Input() userId;
-  @Input() allowEdit = false;
-
+export class EventListComponent implements OnInit { 
   private events: EventModel[] = [];
 
   constructor(
     private af: AngularFire,
     private route: ActivatedRoute) {
-    route.data.forEach(d => console.log(d));
+    route.data.forEach(d => this.events = d['events']);
   }
 
   ngOnInit() {
-    this.af.database.list('\events').subscribe(e => this.events = e);
+    //this.af.database.list('\events').subscribe(e => this.events = e);
   }
 }

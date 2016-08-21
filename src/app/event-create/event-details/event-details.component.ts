@@ -14,7 +14,7 @@ import { EventCreationService } from './../event-create.service';
   templateUrl: 'event-details.component.html',
   directives: [REACTIVE_FORM_DIRECTIVES, FORM_EXTENSION_DIRECTIVES, NgClass],
   providers: [EventDataResolver],
-  styleUrls: ['../event-create.component.css', 'event-details.component.css']
+  styleUrls: ['../event-create.component.css']
 })
 export class EventDetailsComponent implements OnInit {
 

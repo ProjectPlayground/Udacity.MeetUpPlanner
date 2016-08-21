@@ -2,11 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-home',
-  templateUrl: 'home.component.html',
+  selector: 'not-found',
+  templateUrl: 'not-found.component.html',
   styleUrls: ['./../app.component.css']
 })
 
-export class HomeComponent {
-    
-}
+export class NotFoundComponent { }
