@@ -21,7 +21,7 @@ import { FORM_EXTENSION_DIRECTIVES, CustomValidatorsService } from './../shared/
     FORM_EXTENSION_DIRECTIVES
   ],
   providers: [CustomValidatorsService],
-  styleUrls: [ './../app.component.css','signup.component.css']
+  styleUrls: [ './../app.component.css']
 })
 export class SignupComponent implements OnInit {
 

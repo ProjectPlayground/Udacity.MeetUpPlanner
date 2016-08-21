@@ -109,3 +109,10 @@ body {
   background-color: #fff;
   border-top: 1px solid #669CC0;
 }
+
+.action-btn {
+  background-color: #005b96;
+  color: #fff;
+  padding: 7px;
+  width: 100%;
+}
