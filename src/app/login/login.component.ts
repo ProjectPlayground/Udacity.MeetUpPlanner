@@ -7,7 +7,7 @@ import { AngularFire } from 'angularfire2';
   selector: 'app-login',
   templateUrl: 'login.component.html',
   directives: [ ROUTER_DIRECTIVES ],
-  styleUrls: ['login.component.css', './../app.component.css']
+  styleUrls: ['./../app.component.css']
 })
 export class LoginComponent implements OnInit {
 
