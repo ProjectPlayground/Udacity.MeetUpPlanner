@@ -9,6 +9,7 @@ li.create-section {
 
 .section-container {
     min-height: 375px;
+    margin-top: 7px;
 }
 
 .create-event-btn {

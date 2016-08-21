@@ -1,20 +1,3 @@
-.signup-header {
-  padding: 2.5%;
-  background-color: #fff;
-  border-bottom: 1px solid #669CC0;
-}
-
-.signup-body {
-  padding: 7px;
-  background-color: #fff;
-}
-
-.signup-footer {
-  background-color: #fff;
-  border-top: 1px solid #669CC0;
-  padding: 2.5%;
-}
-
 .signup-btn {
   background-color: #005b96;
   color: white;
