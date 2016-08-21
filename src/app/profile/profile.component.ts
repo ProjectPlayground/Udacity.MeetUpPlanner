@@ -33,14 +33,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.buildUpdateForm();
-    this.af.auth.subscribe(authState => this.checkAuthState(authState));
-  }
-
-  checkAuthState(authState) {
-    if (this.uid !== null ||
-      (authState !== null && authState.auth.uid !== this.uid)) {
-        this.router.navigate(['/notloggedin']);
-    }
   }
 
   buildUpdateForm() {
