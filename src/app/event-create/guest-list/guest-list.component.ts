@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { REACTIVE_FORM_DIRECTIVES, FormGroup, FormBuilder } from '@angular/forms';
-import { GuestModel } from './../../shared';
+import { Component, OnInit, Input } from '@angular/core';
+import { REACTIVE_FORM_DIRECTIVES, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { GuestModel, CustomValidatorsService } from './../../shared';
 import { ValidatedInputComponent } from './../../shared/form-extensions';
 
 @Component({
@@ -14,32 +14,42 @@ export class GuestListComponent implements OnInit {
 
   private guestList: GuestModel[] = [];
   private guestFormData: FormGroup;
-  @Output() finalizeList = new EventEmitter();
+  @Input() formData: FormGroup;
+  private guestControl: FormControl;
 
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit() {
+  constructor(
+    private fb: FormBuilder,
+    private validators: CustomValidatorsService) {
     this.buildGuestForm();
   }
 
-  finishList() {
-    this.finalizeList.emit(this.guestList);
+  ngOnInit() {
+    this.guestControl = <FormControl>this.formData.controls['guests'];
+    if (this.guestControl.value != "") {
+      this.guestList = this.guestControl.value;
+    }
   }
 
   addGuest() {
     let guest = new GuestModel(this.guestFormData.controls['name'].value, this.guestFormData.controls['email'].value);
     this.guestList.push(guest);
     this.buildGuestForm();
+    this.updateFormData();
   }
 
   buildGuestForm() {
     this.guestFormData = this.fb.group({
-      name: [''],
-      email: ['']
+      name: ['', this.validators.required],
+      email: ['', Validators.compose([this.validators.required, this.validators.validateEmail])]
     });
   }
 
   removeGuest(guest: GuestModel) {
     this.guestList.splice(this.guestList.indexOf(guest), 1);
+    this.updateFormData();
+  }
+
+  updateFormData() {
+    this.guestControl.updateValue(this.guestList);
   }
 }

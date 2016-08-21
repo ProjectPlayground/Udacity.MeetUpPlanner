@@ -66,10 +66,6 @@ export class ProfileComponent implements OnInit {
     this.af.database.object(`/users/${this.uid}`).update(userDetails);
   }
 
-  navigateToEvent(eventId: string) {
-    this.router.navigate([`event/${eventId}/details`]);
-  }
-
   newEvent() {
     this.router.navigate([`newevent`]);
   }

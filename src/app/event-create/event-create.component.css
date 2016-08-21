@@ -11,12 +11,15 @@ li.create-section {
     min-height: 375px;
 }
 
-.btn-back {
-    margin-bottom: 7px;
-    float: left;
+.create-event-btn {
+  background-color: #005b96;
+  color: white;
+  padding: 7px;
+  width: 100%;
+  margin-bottom: 7px;
 }
 
-.btn-next {
+.event-nav {
     margin-bottom: 7px;
     float: right;
 }

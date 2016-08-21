@@ -2,23 +2,34 @@
     <div class="content">
         <div class="container">
             <ul class="nav nav-tabs">
-                <li class="create-section" role="presentation"><a (click)="changeSection(sections.Details)">Details</a></li>
-                <li class="create-section" role="presentation"><a (click)="changeSection(sections.Guests)">Guests</a></li>
-                <li class="create-section" role="presentation"><a (click)="changeSection(sections.Location)">Location</a></li>
-                <li class="create-section" role="presentation"><a (click)="changeSection(sections.Message)">Message</a></li>
+                <li class="create-section" role="presentation" [ngClass]="{active: currentSection.section == sections.Details}">
+                    <a (click)="changeSection(sections.Details)">Details</a>
+                </li>
+                <li class="create-section" role="presentation" [ngClass]="{active: currentSection.section == sections.Guests}">
+                    <a (click)="changeSection(sections.Guests)">Guests</a>
+                </li>
+                <li class="create-section" role="presentation" [ngClass]="{active: currentSection.section == sections.Location}">
+                    <a (click)="changeSection(sections.Location)">Location</a>
+                </li>
+                <li class="create-section" role="presentation" [ngClass]="{active: currentSection.section == sections.Message}">
+                    <a (click)="changeSection(sections.Message)">Message</a>
+                </li>
             </ul>
-
+           
             <div class="section-container" [ngSwitch]="currentSection.section">
                 <event-details *ngSwitchCase="sections.Details" [formData]="formData"></event-details>
-                <guest-list *ngSwitchCase="sections.Guests">show Guests</guest-list>
-                <event-location *ngSwitchCase="sections.Location">show Location</event-location>
+                <guest-list *ngSwitchCase="sections.Guests" [formData]="formData">show Guests</guest-list>
+                <event-location *ngSwitchCase="sections.Location" [formData]="formData">show Location</event-location>
                 <event-message *ngSwitchCase="sections.Message" [formData]="formData">show Message</event-message>
             </div>
 
-            <div class="section-navigation">
-                <button class="btn btn-primary btn-back"> Back </button>
-                <button class="btn btn-primary btn-next"> Next </button>
-            </div>
+            <button *ngIf="currentNav.msg" class="btn btn-primary event-nav" (click)="goToNext()">{{currentNav?.msg}}</button>
+
+            <button 
+                *ngIf="currentNav.displayPost" 
+                [disabled]="!formData.valid" 
+                class="btn btn-primary create-event-btn"
+                (click)="postEvent()">Create the event!</button>
         </div>
     </div>
 </div>

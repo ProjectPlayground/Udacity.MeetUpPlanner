@@ -36,6 +36,9 @@
             </div>
 
             <div class="body-section">
+                
+                <button style="margin-bottom: 7px" class="btn btn-default" (click)="newEvent()">Create a new event!</button>
+                
                 <ul class="event-list" *ngIf="events.length > 0">
                     <li *ngFor="let event of events">
                         <time>
@@ -43,7 +46,7 @@
                             <span class="month">{{event.start | date:'MMM'}}</span>
                         </time>
                         <div class="info">
-                            <button style="float:right" class="btn btn-default" (click)="navigateToEvent(event.id)">Edit</button>
+           
                             <h2 class="title">{{event.event_name}}</h2>
                             <p class="desc">{{event?.message}}</p>
                         </div>
@@ -54,7 +57,7 @@
                     No events to display
                 </div>
 
-                <button style="float:right; margin-bottom: 7px" class="btn btn-default" (click)="newEvent()">Create a new event!</button>
+                
             </div>
         </div>
     </div>
