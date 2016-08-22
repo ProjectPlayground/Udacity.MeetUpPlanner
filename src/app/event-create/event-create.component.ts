@@ -67,7 +67,22 @@ export class EventCreateComponent implements OnInit {
   }
 
   buildFormData() {
-    let now = new Date(Date()).toISOString().slice(0, 16);
+    let now = new Date(Date.now());
+    console.log(now);
+    let start = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        9
+    );
+    
+    let finish = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate() + 1,
+        9
+    );
+
 
     this.formData = this.fb.group({
       id: [''],
@@ -76,10 +91,15 @@ export class EventCreateComponent implements OnInit {
       event_Type: ['', Validators.required],
       host: ['', Validators.required],
       guests: ['', Validators.required],
-      start: [now, Validators.required],
-      end: [now, Validators.required],
+      start: [start.toISOString().slice(0, 16), Validators.compose([
+        Validators.required, 
+        this.validators.notEarlierThanYesterday, 
+        this.validators.notOverAYearAway
+        ])],
+      end: [finish.toISOString().slice(0, 16), Validators.required],
+      location: ['', Validators.required],
       message: ['']
-    });
+    }, { validator: Validators.compose([this.validators.endIsAfterStart]) });
   }
 
 
@@ -101,7 +121,6 @@ export class EventCreateComponent implements OnInit {
   
   getUser() {
     this.af.database.object(`/users/${this.userId}`).forEach(u => {
-      console.log(u);
         (<FormControl>this.formData.controls['host']).updateValue(u.displayName);
       })
   }
