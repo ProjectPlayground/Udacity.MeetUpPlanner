@@ -8,10 +8,13 @@ import { EventCreateComponent } from './event-create';
 import { EventListResolver } from './event-list';
 import { ProfileDataResolver } from './profile';
 import { HomeComponent } from './home'
+import { NotFoundComponent } from './notfound';
+import { NotLoggedInComponent } from './notloggedin';
+import { LoggedInGuard } from './shared/';
 
 const routes: RouterConfig = [
   { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent }, 
+  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   {
@@ -21,17 +24,34 @@ const routes: RouterConfig = [
       user: ProfileDataResolver,
     },
     component: ProfileComponent,
-
+    canActivate: [LoggedInGuard]
   },
-  { path: 'events', component: EventListComponent },
+  {
+    path: 'events',
+    component: EventListComponent,
+    resolve: {
+      events: EventListResolver
+    },
+    canActivate: [LoggedInGuard]
+  },
   {
     path: 'event',
-    component: EventCreateComponent
+    component: EventCreateComponent,
+    canActivate: [LoggedInGuard]
   },
   {
     path: 'newevent',
     component: EventCreateComponent,
-    data: { newEvent: true }
+    data: { newEvent: true },
+    canActivate: [LoggedInGuard]
+  },
+  {
+    path: 'notloggedin',
+    component: NotLoggedInComponent
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 
 ];

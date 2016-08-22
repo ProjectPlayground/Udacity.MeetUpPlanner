@@ -2,14 +2,14 @@
   <div class="guest-list-controls">
     <form [formGroup]="guestFormData" (submit)="addGuest()">
       <span>
-            <validated-input [control]="guestFormData.controls['name']" class="col-xs-5">
+            <validated-input [control]="guestFormData.controls['name']" class="col-md-5">
                 <input type="text" [formControl]="guestFormData.controls['name']" class="form-control" id="name" placeholder="Enter Guest's Name">
             </validated-input>
             </span>
 
       <span>
-            <validated-input [control]="guestFormData.controls['email']" class="col-xs-5">
-                <input type="text" [formControl]="guestFormData.controls['email']" class="form-control" id="name" placeholder="Enter Guest's Email">
+            <validated-input [control]="guestFormData.controls['email']" class="col-md-5">
+                <input type="email" [formControl]="guestFormData.controls['email']" class="form-control" id="name" placeholder="Enter Guest's Email">
             </validated-input>
             </span>
 

@@ -8,6 +8,7 @@ export class EventListResolver implements Resolve<EventModel[]> {
     constructor( @Inject(forwardRef(() => AngularFire)) private af: AngularFire) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<EventModel[]> {
+        
         let userId = route.params['uid'];
         return this.af.database.object(`/events`)
             .take(1)

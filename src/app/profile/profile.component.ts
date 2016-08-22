@@ -4,13 +4,12 @@ import { CORE_DIRECTIVES } from '@angular/common';
 import { ActivatedRoute, Router }  from '@angular/router';
 import { AngularFire } from 'angularfire2';
 import { UserModel } from './../shared';
-import { EventListComponent } from './../event-list';
 
 @Component({
   moduleId: module.id,
   selector: 'app-profile',
   templateUrl: 'profile.component.html',
-  directives: [CORE_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, EventListComponent],
+  directives: [CORE_DIRECTIVES, REACTIVE_FORM_DIRECTIVES],
   styleUrls: ['./../app.component.css', 'profile.component.css']
 })
 export class ProfileComponent implements OnInit {
@@ -33,17 +32,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.events);
     this.buildUpdateForm();
-    this.af.auth.subscribe(authState => this.checkAuthState(authState));
-  }
-
-  checkAuthState(authState) {
-    if (this.uid !== null ||
-      (authState !== null && authState.auth.uid !== this.uid)) {
-      // TODO: Create unauthorised/forbidden pages;
-      console.log('send 403');
-    }
   }
 
   buildUpdateForm() {

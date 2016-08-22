@@ -6,6 +6,7 @@ import { FIREBASE_PROVIDERS, defaultFirebase, firebaseAuthConfig, AuthProviders,
 import { EventDataResolver } from './app/event-create/event.resolver';
 import { EventListResolver } from './app/event-list';
 import { ProfileDataResolver } from './app/profile';
+import { LoggedInGuard } from './app/shared'
 
 if (environment.production) {
   enableProdMode();
@@ -29,6 +30,7 @@ bootstrap(AppComponent,
   }),
   EventDataResolver,
   EventListResolver,
-  ProfileDataResolver
+  ProfileDataResolver,
+  LoggedInGuard
 ])
 .catch(err => console.error(err));
