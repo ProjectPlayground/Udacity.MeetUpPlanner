@@ -1,0 +1,5 @@
+<form [formGroup]="formData">
+  <validated-input [control]="formData.controls['location']">
+    <label for="location" class="control-label">Location</label>
+    <input type="text" [formControl]="formData.controls['location']" class="form-control" id="location" placeholder="Enter a location address">
+  </validated-input>

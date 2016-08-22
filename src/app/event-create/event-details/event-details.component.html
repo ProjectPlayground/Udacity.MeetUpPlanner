@@ -1,0 +1,28 @@
+<div class="content-page">
+    <div class="content">
+
+        <form [formGroup]="formData">
+            <validated-input [control]="formData.controls['event_name']">
+                <label for="name" class="control-label">Event Name</label>
+                <input type="text" [formControl]="formData.controls['event_name']" class="form-control" id="name" placeholder="Enter an event name">
+            </validated-input>
+
+            <event-type-select [control]="formData.controls['event_Type']"></event-type-select>
+
+            <validated-input [control]="formData.controls['host']">
+                <label for="host" class="control-label">Host</label>
+                <input type="text" [formControl]="formData.controls['host']" class="form-control" id="host">
+            </validated-input>
+
+            <validated-input [control]="formData.controls['start']">
+                <label for="start" class="control-label">Start Time</label>
+                <input type="datetime-local" [formControl]="formData.controls['start']" class="form-control" id="start">
+            </validated-input>
+
+            <validated-input [control]="formData.controls['end']" [formGroup]="formData">
+                <label for="end" class="control-label">End Time</label>
+                <input type="datetime-local" [formControl]="formData.controls['end']" class="form-control" id="end">
+            </validated-input>
+        </form>
+    </div>
+</div>

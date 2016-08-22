@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { AngularFire } from 'angularfire2';
 
@@ -7,20 +7,20 @@ import { AngularFire } from 'angularfire2';
   selector: 'app-login',
   templateUrl: 'login.component.html',
   directives: [ ROUTER_DIRECTIVES ],
-  styleUrls: ['login.component.css', './../app.component.css']
+  styleUrls: ['./../app.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   private email: string;
   private pass: string;
+  private errMsg = null;
 
   constructor(public af: AngularFire, private router: Router) { }
 
-  ngOnInit() {
-  }
-
   login() {
+    this.errMsg = null;
     this.af.auth.login({ email: this.email, password: this.pass })
-    .then(authState => this.router.navigate(['/profile', authState.uid]));
+    .then(authState => this.router.navigate(['/profile', authState.uid]))
+    .catch(err => this.errMsg = err.toString());
   }
 }

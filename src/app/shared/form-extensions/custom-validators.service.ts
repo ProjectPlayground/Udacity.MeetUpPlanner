@@ -1,23 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
 
-
-
-export class ValidationMessages {
-  valid: boolean;
-  message: string;
-
-  constructor(valid, message) {
-    this.valid = valid;
-    this.message = message;
-  }
-}
-
-
 const requiredMessage = 'This field is required';
 const passwordMatchMessage = 'Passwords do not match';
 const invalidEmailMessage = 'Not a valid email';
 const invalidPassword = 'Password is not valid';
+
+const startBeforeNow = 'Start time cannot be earlier than current date and time';
+const startLaterThanYear = 'Start time cannot be more than year from now';
+const endIsBeforeStart = 'End Time cannot be before start time';
 
 @Injectable()
 export class CustomValidatorsService {
@@ -31,6 +22,13 @@ export class CustomValidatorsService {
 
   validatePasswordsMatch(group: FormGroup) {
     return group.controls['pass'].value === group.controls['passConfirm'].value ? null : { 'passwordMatch': true };
+  }
+
+   endIsAfterStart(group: FormGroup) {
+     let start = new Date(group.controls['start'].value);
+     let end = new Date(group.controls['end'].value);
+     console.log('err thrown');
+     return start < end ? null : {'endIsBeforeStart': true}
   }
 
   passwordIsValid(group: FormGroup) {
@@ -50,6 +48,36 @@ export class CustomValidatorsService {
   containsSpecial(control: FormControl) {
     let regex = new RegExp('(?=.*?[#?!@$%^&*-])');
     return regex.test(control.value) ? null : { 'containsSpecial': true };
+  }
+
+  notEarlierThanYesterday(control: FormControl) {
+    let enteredVal = new Date(control.value);
+    let now = new Date(Date.now());
+    let yesterday = new Date (
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate() - 1,
+      0, 0, 0, 0
+    );
+    
+    if (enteredVal < yesterday) {
+      return { 'earlierThanNow': true };
+    }
+  }
+
+  notOverAYearAway(control: FormControl) {
+    let enteredVal = new Date(control.value);
+    let now = new Date(Date.now());
+    let nextYear = new Date (
+      now.getFullYear() + 1,
+      now.getMonth(),
+      now.getDate(),
+      0, 0, 0, 0
+    );
+    
+    if(nextYear < enteredVal) {
+      return { 'validateOverYear': true };
+    } 
   }
 
   validateEmail(control: FormControl) {
@@ -86,6 +114,14 @@ export class CustomValidatorsService {
     if (control.hasError('validateEmail')) {
       this.errorMessage.push(invalidEmailMessage);
     }
+
+    if(control.hasError('earlierThanNow')) {
+      this.errorMessage.push(startBeforeNow)
+    }
+
+    if(control.hasError('validateOverYear')) {
+      this.errorMessage.push(startLaterThanYear);
+    }
   }
 
   buildFormErrorMessages(formGroup: FormGroup) {
@@ -95,6 +131,10 @@ export class CustomValidatorsService {
 
     if (formGroup.hasError('invalidPassword')) {
       this.errorMessage.push(invalidPassword);
+    }
+
+    if(formGroup.hasError('endIsBeforeStart')) {
+      this.errorMessage.push(endIsBeforeStart);
     }
   }
 }

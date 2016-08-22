@@ -1,4 +1,4 @@
-export class UserDetail {
+export class UserModel {
   displayName: string;
   dob: string;
   employer: string;

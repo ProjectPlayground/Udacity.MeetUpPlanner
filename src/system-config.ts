@@ -57,7 +57,17 @@ const barrels: string[] = [
   'app/shared/UserDetails',
   'app/login',
   'app/signup',
-  'app/profile'
+  'app/profile',
+  'app/event-list',
+  'app/event-create',
+  'app/event-create/guest-lis',
+  'app/event-create/guest-list',
+  'app/event-create/event-details',
+  'app/event-create/event-location',
+  'app/event-create/event-message',
+  'app/home',
+  'app/notfound',
+  'app/notloggedin',
   /** @cli-barrel */
 ];
 

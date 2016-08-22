@@ -21,7 +21,7 @@ import { FORM_EXTENSION_DIRECTIVES, CustomValidatorsService } from './../shared/
     FORM_EXTENSION_DIRECTIVES
   ],
   providers: [CustomValidatorsService],
-  styleUrls: ['signup.component.css']
+  styleUrls: [ './../app.component.css']
 })
 export class SignupComponent implements OnInit {
 
@@ -49,7 +49,8 @@ export class SignupComponent implements OnInit {
       jobTitle: [''],
       employer: [''],
       dob: [''],
-      pass: ['', Validators.compose(
+      pass: ['',
+      Validators.compose(
         [Validators.required,
           Validators.minLength(8),
           this.validators.containsLowerCase,

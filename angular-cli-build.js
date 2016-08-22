@@ -23,9 +23,12 @@ module.exports = function (defaults) {
       'font-awesome/css/font-awesome.min.css',
       'font-awesome/fonts/fontawesome-webfont.woff',
       'font-awesome/fonts/fontawesome-webfont.woff2',
-      'bootstrap/dist/css/bootstrap.css',
-      'bootstrap/dist/js/bootstrap.js',
-      'jquery/dist/jquery.js',
+      'jquery/dist/jquery.min.js',
+      'bootstrap/dist/**/*',
+      //'bootstrap/dist/js/bootstrap.js',
+      //'bootstrap/dist/fonts/glyphicons-halflings-regular.woff2',
+      //'bootstrap/dist/fonts/glyphicons-halflings-regular.woff ',
+      //'bootstrap/dist/fonts/glyphicons-halflings-regular.ttf '
     ]
   });
 };

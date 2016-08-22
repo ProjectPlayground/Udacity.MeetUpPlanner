@@ -1,0 +1,7 @@
+<validated-input [control]="control">
+    <label for="eventType" class="control-label">Event Type</label>
+    <input list="event_types" [formControl]="control" class="form-control" id="eventType" placeholder="Choose an event type">
+</validated-input>
+<datalist id="event_types">
+    <option *ngFor="let eventType of eventTypeList" [value]="eventType.event_type">
+</datalist>
