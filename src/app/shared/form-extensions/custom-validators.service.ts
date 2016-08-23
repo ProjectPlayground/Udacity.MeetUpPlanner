@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
+import * as moment from 'moment';
 
 const requiredMessage = 'This field is required';
 const passwordMatchMessage = 'Passwords do not match';
@@ -24,11 +25,13 @@ export class CustomValidatorsService {
     return group.controls['pass'].value === group.controls['passConfirm'].value ? null : { 'passwordMatch': true };
   }
 
-   endIsAfterStart(group: FormGroup) {
-     let start = new Date(group.controls['start'].value);
-     let end = new Date(group.controls['end'].value);
-     console.log('err thrown');
-     return start < end ? null : {'endIsBeforeStart': true}
+  endIsAfterStart(group: FormGroup) {
+    let start = moment(group.controls['start'].value);
+    let end = moment(group.controls['end'].value);
+    let startTime = new Date(group.controls['start'].value).getTime();
+    let endTime = new Date(group.controls['end'].value).getTime();
+
+    return start < end ? null : { 'endIsBeforeStart': true };
   }
 
   passwordIsValid(group: FormGroup) {
@@ -53,13 +56,13 @@ export class CustomValidatorsService {
   notEarlierThanYesterday(control: FormControl) {
     let enteredVal = new Date(control.value);
     let now = new Date(Date.now());
-    let yesterday = new Date (
+    let yesterday = new Date(
       now.getFullYear(),
       now.getMonth(),
       now.getDate() - 1,
       0, 0, 0, 0
     );
-    
+
     if (enteredVal < yesterday) {
       return { 'earlierThanNow': true };
     }
@@ -68,25 +71,21 @@ export class CustomValidatorsService {
   notOverAYearAway(control: FormControl) {
     let enteredVal = new Date(control.value);
     let now = new Date(Date.now());
-    let nextYear = new Date (
+    let nextYear = new Date(
       now.getFullYear() + 1,
       now.getMonth(),
       now.getDate(),
       0, 0, 0, 0
     );
-    
-    if(nextYear < enteredVal) {
+
+    if (nextYear < enteredVal) {
       return { 'validateOverYear': true };
-    } 
+    }
   }
 
   validateEmail(control: FormControl) {
-    if (control.value
-      .match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {
-      return null;
-    } else {
-      return { 'valdiateEmail': true };
-    }
+    let regex = new RegExp('([a-z0-9._%+-])+@([a-z0-9.-])+.([a-z])');
+    return regex.test(control.value) ? null : { 'validateEmail': true };
   }
 
   buildErrorMessages(control: FormControl, formGroup: FormGroup) {
@@ -115,11 +114,11 @@ export class CustomValidatorsService {
       this.errorMessage.push(invalidEmailMessage);
     }
 
-    if(control.hasError('earlierThanNow')) {
+    if (control.hasError('earlierThanNow')) {
       this.errorMessage.push(startBeforeNow)
     }
 
-    if(control.hasError('validateOverYear')) {
+    if (control.hasError('validateOverYear')) {
       this.errorMessage.push(startLaterThanYear);
     }
   }
@@ -133,7 +132,7 @@ export class CustomValidatorsService {
       this.errorMessage.push(invalidPassword);
     }
 
-    if(formGroup.hasError('endIsBeforeStart')) {
+    if (formGroup.hasError('endIsBeforeStart')) {
       this.errorMessage.push(endIsBeforeStart);
     }
   }

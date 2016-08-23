@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CORE_DIRECTIVES, NgClass } from '@angular/common';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
@@ -21,9 +21,9 @@ import { FORM_EXTENSION_DIRECTIVES, CustomValidatorsService } from './../shared/
     FORM_EXTENSION_DIRECTIVES
   ],
   providers: [CustomValidatorsService],
-  styleUrls: [ './../app.component.css']
+  styleUrls: ['./../app.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, AfterViewInit {
 
   private formData: FormGroup;
   private showPassHelp: boolean = false;
@@ -36,10 +36,13 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.buildSignUpForm();
-
     let passwordInput = document.getElementById('pwd');
     passwordInput.onfocus = (() => this.showPassHelp = true);
     passwordInput.onblur = (() => this.showPassHelp = false);
+  }
+
+  ngAfterViewInit() {
+    document.getElementById('name').focus();
   }
 
   buildSignUpForm() {
@@ -50,12 +53,12 @@ export class SignupComponent implements OnInit {
       employer: [''],
       dob: [''],
       pass: ['',
-      Validators.compose(
-        [Validators.required,
-          Validators.minLength(8),
-          this.validators.containsLowerCase,
-          this.validators.containsUpperCase,
-          this.validators.containsSpecial])],
+        Validators.compose(
+          [Validators.required,
+            Validators.minLength(8),
+            this.validators.containsLowerCase,
+            this.validators.containsUpperCase,
+            this.validators.containsSpecial])],
       passConfirm: ['', Validators.required]
     }, { validator: Validators.compose([this.validators.validatePasswordsMatch, this.validators.passwordIsValid]) });
   }
