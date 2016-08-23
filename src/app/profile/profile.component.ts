@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup } from '@angular/forms';
 import { CORE_DIRECTIVES } from '@angular/common';
 import { ActivatedRoute, Router }  from '@angular/router';
@@ -12,7 +12,7 @@ import { UserModel } from './../shared';
   directives: [CORE_DIRECTIVES, REACTIVE_FORM_DIRECTIVES],
   styleUrls: ['./../app.component.css', 'profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, AfterViewInit {
 
   private uid = null;
   private user: UserModel = new UserModel();
@@ -33,6 +33,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.buildUpdateForm();
+  }
+
+  ngAfterViewInit() {
+    document.getElementById('name').focus();
   }
 
   buildUpdateForm() {

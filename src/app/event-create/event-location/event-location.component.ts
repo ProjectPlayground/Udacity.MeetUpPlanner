@@ -9,6 +9,6 @@ import { FORM_EXTENSION_DIRECTIVES } from './../../shared/form-extensions';
   templateUrl: 'event-location.component.html'
 })
 export class EventLocationComponent {
-  @Input() formData: FormGroup
+  @Input() formData: FormGroup;
   constructor() { }
 }
