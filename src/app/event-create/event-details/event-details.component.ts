@@ -1,7 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
-import { REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup } from '@angular/forms';
 import { AngularFire } from 'angularfire2';
 import { FORM_EXTENSION_DIRECTIVES } from './../../shared/form-extensions';
 import 'rxjs/add/operator/map';
@@ -16,14 +15,11 @@ import { EventCreationService } from './../event-create.service';
   providers: [EventDataResolver],
   styleUrls: ['../event-create.component.css']
 })
-export class EventDetailsComponent implements OnInit {
+export class EventDetailsComponent implements AfterViewInit {
 
   @Input() formData: FormGroup;
 
-  constructor(
-    private af: AngularFire,
-    private fb: FormBuilder,
-    private eventService: EventCreationService) { }
-
-  ngOnInit() { }
+  ngAfterViewInit() {
+    document.getElementById('name').focus();
+  }
 }

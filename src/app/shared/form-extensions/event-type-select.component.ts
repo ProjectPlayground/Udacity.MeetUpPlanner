@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { REACTIVE_FORM_DIRECTIVES, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { REACTIVE_FORM_DIRECTIVES, FormControl } from '@angular/forms';
 import { AngularFire } from 'angularfire2';
 import { EventTypeModel } from './../models/event-type.model';
 import { ValidatedInputComponent } from './validated-input.component';
