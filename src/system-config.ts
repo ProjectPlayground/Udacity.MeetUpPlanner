@@ -1,5 +1,3 @@
-"use strict";
-
 // SystemJS configuration file, see links for more information
 // https://github.com/systemjs/systemjs
 // https://github.com/systemjs/systemjs/blob/master/docs/config-api.md
@@ -13,13 +11,20 @@ const map: any = {
   'ng2-bootstrap': 'vendor/ng2-bootstrap',
   'firebase': 'vendor/firebase/firebase.js',
   'angularfire2': 'vendor/angularfire2',
-  'jquery': 'vendor/jquery/dist/jquery.js',
+  'jquery': 'vendor/jquery/dist/jquery.min.js',
   'bootstrap': 'vendor/bootstrap/dist/js/bootstrap.js',
   'ng2-pagination': 'vendor/ng2-pagination'
 };
 
 /** User packages configuration. */
 const packages: any = {
+  'jquery' : {
+    format: 'global',
+    defaultExtension: 'js'
+  },
+  'bootstrap': {
+    format: 'global'
+  },
   'ng2-bootstrap': {
     defaultExtension: 'js'
   },
@@ -29,6 +34,12 @@ const packages: any = {
   angularfire2: {
     defaultExtension: 'js',
     main: 'angularfire2.js'
+  }
+};
+
+const meta: any = {
+  'bootstrap': {
+    deps: ['jquery']
   }
 };
 
@@ -90,4 +101,4 @@ System.config({
 });
 
 // Apply the user's configuration.
-System.config({ map, packages });
+System.config({map, packages, meta});

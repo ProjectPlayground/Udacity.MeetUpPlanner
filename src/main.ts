@@ -6,7 +6,8 @@ import { FIREBASE_PROVIDERS, defaultFirebase, firebaseAuthConfig, AuthProviders,
 import { EventDataResolver } from './app/event-create/event.resolver';
 import { EventListResolver } from './app/event-list';
 import { ProfileDataResolver } from './app/profile';
-import { LoggedInGuard } from './app/shared'
+import { LoggedInGuard } from './app/shared';
+import 'bootstrap';
 
 if (environment.production) {
   enableProdMode();
