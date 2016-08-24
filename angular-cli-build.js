@@ -24,11 +24,7 @@ module.exports = function (defaults) {
       'font-awesome/fonts/fontawesome-webfont.woff',
       'font-awesome/fonts/fontawesome-webfont.woff2',
       'jquery/dist/jquery.min.js',
-      'bootstrap/dist/**/*',
-      //'bootstrap/dist/js/bootstrap.js',
-      //'bootstrap/dist/fonts/glyphicons-halflings-regular.woff2',
-      //'bootstrap/dist/fonts/glyphicons-halflings-regular.woff ',
-      //'bootstrap/dist/fonts/glyphicons-halflings-regular.ttf '
+      'bootstrap/dist/**/*'
     ]
   });
 };
